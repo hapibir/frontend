@@ -1,0 +1,32 @@
+{
+  "root": true,
+  "extends": [
+    "@conten2/eslint-config",
+    "@nuxtjs/eslint-config-typescript",
+    "prettier/vue",
+    "prettier/@typescript-eslint"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "extraFileExtensions": [".vue"]
+  },
+  "settings": {
+    "import/core-modules": ["vue", "@nuxt/types"]
+  },
+  "rules": {
+    "space-before-function-paren": 0,
+    "unicorn/prevent-abbreviations": [
+      1,
+      {
+        "replacements": {
+          "args": {
+            "arguments": false
+          },
+          "env": {
+            "environment": false
+          }
+        }
+      }
+    ]
+  }
+}
