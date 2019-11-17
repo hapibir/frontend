@@ -17,7 +17,7 @@ import { createComponent } from '@vue/composition-api'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 
-import firebase, { providers } from '~/firebase'
+import firebase, { providers } from '~/plugins/firebase'
 
 type Props = { provider: 'twitter' | 'github' }
 
@@ -59,9 +59,7 @@ export default createComponent({
 <style lang="scss" scoped>
 .button {
   width: 240px;
-
   cursor: pointer;
-
   @each $name,
     $color
       in (

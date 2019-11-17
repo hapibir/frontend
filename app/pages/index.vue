@@ -12,5 +12,3 @@ export default createComponent({
   setup() {}
 })
 </script>
-
-<style lang="scss" scoped></style>
