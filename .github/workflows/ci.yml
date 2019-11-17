@@ -23,6 +23,7 @@ jobs:
         run: npm run build
         env:
           CI: true
+          NPM_FONTAWESOME_TOKEN: ${{ secrets.NPM_FONTAWESOME_TOKEN }}
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
           FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
