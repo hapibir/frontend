@@ -1,0 +1,30 @@
+{
+  "package.json": [
+    "prettier-package-json --write",
+    "prettier --write",
+    "git add"
+  ],
+  "*[!package].json": [
+    "prettier --write",
+    "git add"
+  ],
+  "*.html": [
+    "prettier --write",
+    "git add"
+  ],
+  "*.{js,ts}": [
+    "eslint --fix",
+    "prettier --write",
+    "git add"
+  ],
+  "*.vue": [
+    "eslint --fix",
+    "stylelint --fix",
+    "prettier --write",
+    "git add"
+  ],
+  "*.yml": [
+    "prettier --write",
+    "git add"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "extends": [
+    "@conten2/stylelint-config"
+  ]
+}
