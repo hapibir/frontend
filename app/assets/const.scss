@@ -1,0 +1,8 @@
+$bg-whity: #f6f8fa;
+$text-color: hsl(hue(#f6f8fa), 24%, 32%);
+$shadow-color: hsla(hue($text-color), 30%, 40%, 0.2);
+
+$social-colors: (
+  twitter: #56a0ee,
+  github: #24292e
+);

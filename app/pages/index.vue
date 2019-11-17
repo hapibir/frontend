@@ -1,26 +1,15 @@
 <template>
   <div>
-    <div @click="login">Login</div>
+    <n-link to="/login">Login</n-link>
   </div>
 </template>
 
 <script lang="ts">
 import { createComponent } from '@vue/composition-api'
 
-import firebase from '~/firebase'
-
 export default createComponent({
-  name: 'PageIndex',
   components: {},
-  setup() {
-    return {
-      login: () => {
-        firebase
-          .auth()
-          .signInWithRedirect(new firebase.auth.TwitterAuthProvider())
-      }
-    }
-  }
+  setup() {}
 })
 </script>
 

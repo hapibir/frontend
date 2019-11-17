@@ -19,6 +19,9 @@
       1,
       {
         "replacements": {
+          "props": {
+            "properties": false
+          },
           "args": {
             "arguments": false
           },

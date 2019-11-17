@@ -8,3 +8,8 @@ if (!firebase.apps.length) {
 }
 
 export default firebase
+
+export const providers = {
+  twitter: firebase.auth.TwitterAuthProvider,
+  github: firebase.auth.GithubAuthProvider
+}
