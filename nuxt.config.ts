@@ -16,7 +16,7 @@ const NuxtConfig: Configuration = {
     FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID!,
     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID!
   },
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: ['@nuxt/typescript-build', 'nuxt-typed-vuex'],
   modules: ['@nuxtjs/style-resources'],
   css: ['minireset.css'],
   styleResources: {
@@ -24,6 +24,7 @@ const NuxtConfig: Configuration = {
   },
   build: {
     cache: true,
+    transpile: [/nuxt-typed-vuex/],
     postcss: {
       plugins: {
         'postcss-short': {}
