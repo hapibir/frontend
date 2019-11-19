@@ -15,39 +15,41 @@
 import { createComponent } from '@vue/composition-api'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
-import firebase, { providers } from '~/plugins/firebase'
+import firebase, { providers, signinProcesses } from '~/plugins/firebase'
 
-type Props = { provider: 'twitter' | 'github' }
+type Props = { provider: keyof typeof providers }
 
 export default createComponent({
   components: { FontAwesomeIcon },
   props: {
     provider: {
       type: String,
-      required: true,
-      validator(value) {
-        return ['twitter', 'github'].includes(value)
-      }
+      required: true
     }
   },
-  setup(props: Props) {
-    const { icon, displayName, ProviderFactory } = {
+  setup(props: Props, context) {
+    const { icon, displayName, ProviderFactory, signin } = {
       twitter: {
         icon: faTwitter,
         displayName: 'Twitter',
-        ProviderFactory: providers.twitter
-      },
-      github: {
-        icon: faGithub,
-        displayName: 'GitHub',
-        ProviderFactory: providers.github
+        ProviderFactory: providers.twitter,
+        signin: signinProcesses.twitter
       }
     }[props.provider]
+
     return {
       login: () => {
-        firebase.auth().signInWithRedirect(new ProviderFactory())
+        firebase
+          .auth()
+          .signInWithPopup(new ProviderFactory())
+          .then(result => {
+            signin(result, context)
+          })
+          .catch(error => {
+            console.error(error)
+          })
       },
       displayName,
       icon

@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "no-shadow": [2, { "allow": ["state"] }],
+    "no-param-reassign": [0]
+  }
+}

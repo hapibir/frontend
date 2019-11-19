@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import { SetupContext } from '@vue/composition-api'
 
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -18,6 +19,19 @@ if (firebase.apps.length === 0) {
 export default firebase
 
 export const providers = {
-  twitter: firebase.auth.TwitterAuthProvider,
-  github: firebase.auth.GithubAuthProvider
+  twitter: firebase.auth.TwitterAuthProvider
+}
+
+type a = keyof typeof providers
+
+export const signinProcesses: {
+  [type in keyof typeof providers]: (
+    result: firebase.auth.UserCredential,
+    context: SetupContext
+  ) => void
+} = {
+  twitter(result) {
+    const userName = result.additionalUserInfo!.username!
+    console.log(userName)
+  }
 }

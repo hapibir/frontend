@@ -22,6 +22,13 @@ const NuxtConfig: Configuration = {
   styleResources: {
     scss: ['mathsass', '~/assets/const.scss']
   },
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: process.env.HAPIBIR_API_ENDPOINT!
+      }
+    }
+  },
   build: {
     cache: true,
     transpile: [/nuxt-typed-vuex/],

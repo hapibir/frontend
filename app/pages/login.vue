@@ -2,7 +2,6 @@
   <div>
     <div class="buttons">
       <LoginButton provider="twitter" />
-      <LoginButton provider="github" />
     </div>
   </div>
 </template>
