@@ -2,20 +2,49 @@ import { getAccessorType, mutationTree, getterTree } from 'nuxt-typed-vuex'
 
 export const state = () => ({
   isLogin: false,
+  isRegister: false,
   email: '',
-  uid: ''
+  account: '',
+  username: '',
+  providerId: '',
+  icon: ''
 })
 
 export const getters = getterTree(state, {})
 
 export const mutations = mutationTree(state, {
-  login(state, { email, uid }) {
+  login(state, { email, account }: { email: string; account: string }) {
     state.email = email
-    state.uid = uid
+    state.account = account
+    state.isLogin = true
   },
   logout(state) {
     state.email = ''
-    state.uid = ''
+    state.account = ''
+    state.isLogin = false
+  },
+  preRegister(
+    state,
+    {
+      email,
+      account,
+      username,
+      providerId,
+      icon
+    }: {
+      email: string
+      account: string
+      username: string
+      providerId: string
+      icon: string
+    }
+  ) {
+    state.email = email
+    state.account = account
+    state.username = username
+    state.providerId = providerId
+    state.icon = icon
+    state.isRegister = true
   }
 })
 

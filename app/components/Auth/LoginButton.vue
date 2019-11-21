@@ -38,14 +38,13 @@ export default createComponent({
         signin: signinProcesses.twitter
       }
     }[props.provider]
-
     return {
       login: () => {
         firebase
           .auth()
           .signInWithPopup(new ProviderFactory())
-          .then(result => {
-            signin(result, context)
+          .then(async result => {
+            await signin(result, context)
           })
           .catch(error => {
             console.error(error)

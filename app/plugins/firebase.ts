@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import { SetupContext } from '@vue/composition-api'
+import gql from 'graphql-tag'
 
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -30,8 +31,40 @@ export const signinProcesses: {
     context: SetupContext
   ) => void
 } = {
-  twitter(result) {
-    const userName = result.additionalUserInfo!.username!
-    console.log(userName)
+  async twitter(result, context) {
+    const email = result.user!.email!
+    const {
+      data: { user }
+    } = await context.root.$apolloProvider.clients.defaultClient.query({
+      query: gql`
+        query($email: String!) {
+          user(email: $email) {
+            account
+            email
+            icon
+          }
+        }
+      `,
+      variables: {
+        email
+      }
+    })
+    if (user) {
+      context.root.$accessor.login({
+        email,
+        account: user.account
+      })
+      context.root.$router.push('/home')
+    } else {
+      context.root.$accessor.preRegister({
+        email,
+        account: result.additionalUserInfo!.username!,
+        username: result.additionalUserInfo!.profile!.name,
+        icon: (result.additionalUserInfo!.profile!
+          .profile_image_url_https as string).replace(/_normal/g, ''),
+        providerId: result.additionalUserInfo!.providerId
+      })
+      context.root.$router.push('/register')
+    }
   }
 }

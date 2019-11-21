@@ -17,7 +17,7 @@ const NuxtConfig: Configuration = {
     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID!
   },
   buildModules: ['@nuxt/typescript-build', 'nuxt-typed-vuex'],
-  modules: ['@nuxtjs/style-resources'],
+  modules: ['@nuxtjs/style-resources', '@nuxtjs/apollo'],
   css: ['minireset.css'],
   styleResources: {
     scss: ['mathsass', '~/assets/const.scss']
