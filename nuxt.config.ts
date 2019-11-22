@@ -6,7 +6,11 @@ dotenv.config()
 const NuxtConfig: Configuration = {
   mode: 'universal',
   srcDir: 'app/',
-  plugins: ['~/plugins/compositionApi.ts', '~/plugins/firebase.ts'],
+  plugins: [
+    '~/plugins/compositionApi.ts',
+    '~/plugins/firebase.ts',
+    '~/plugins/localStorage.ts'
+  ],
   env: {
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY!,
     FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN!,

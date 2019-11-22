@@ -16,21 +16,6 @@
   "rules": {
     "arrow-parens": [2, "as-needed"],
     "space-before-function-paren": 0,
-    "unicorn/prevent-abbreviations": [
-      1,
-      {
-        "replacements": {
-          "props": {
-            "properties": false
-          },
-          "args": {
-            "arguments": false
-          },
-          "env": {
-            "environment": false
-          }
-        }
-      }
-    ]
+    "unicorn/prevent-abbreviations": 0
   }
 }

@@ -13,6 +13,7 @@ import LoginButton from '~/components/Auth/LoginButton.vue'
 
 export default createComponent({
   components: { LoginButton },
+  middleware: 'login',
   setup() {
     return {}
   }

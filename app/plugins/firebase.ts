@@ -39,7 +39,8 @@ export const signinProcesses: {
       query: gql`
         query($email: String!) {
           user(email: $email) {
-            account
+            screenName
+            name
             email
             icon
           }
@@ -49,13 +50,14 @@ export const signinProcesses: {
         email
       }
     })
-    if (user) {
-      context.root.$accessor.login({
-        email,
-        account: user.account
-      })
-      context.root.$router.push('/home')
-    } else {
+
+    context.root.$accessor.login({
+      email,
+      ...user
+    })
+    context.root.$router.push('/home')
+
+    /* else {
       context.root.$accessor.preRegister({
         email,
         account: result.additionalUserInfo!.username!,
@@ -66,5 +68,6 @@ export const signinProcesses: {
       })
       context.root.$router.push('/register')
     }
+    */
   }
 }

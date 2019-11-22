@@ -12,12 +12,6 @@ export default createComponent({
 })
 </script>
 
-<style lang="scss">
-:root {
-  --sans-serif: 'Roboto', sans-serif;
-}
-</style>
-
 <style lang="scss" scoped>
 .root {
   width: 100%;
