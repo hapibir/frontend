@@ -7,17 +7,19 @@ type State = {
     screenName: string
     name?: string
     icon: string
+    birthday: string
   }
 }
 export const state: () => State = () => ({
   isLogin: false,
+  isRegister: false,
   account: {
     email: '',
     screenName: '',
-    username: '',
-    icon: ''
-  },
-  isRegister: false
+    name: '',
+    icon: '',
+    birthday: ''
+  }
 })
 
 export const getters = getterTree(state, {})
@@ -25,10 +27,16 @@ export const getters = getterTree(state, {})
 export const mutations = mutationTree(state, {
   login(
     state,
-    account: { email: string; screenName: string; name?: string; icon: string }
+    account: {
+      email: string
+      screenName: string
+      name?: string
+      icon: string
+      birthday: string
+    }
   ) {
     state.isLogin = true
-    state.account = account
+    state.account = { ...account }
   },
   logout(state) {
     state.isLogin = false

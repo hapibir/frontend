@@ -1,11 +1,14 @@
-$bg-whity: #f6f8fa;
+$bg-whity: #f6f8f8;
+
+$accent-color: hsl(hue($bg-whity), 70%, 75%);
 
 $text-color: hsl(hue($bg-whity), 24%, 24%);
 $text-color-light: lighten($text-color, 45%);
+$text-color-whity: lighten($text-color-light, 12.5%);
 
 $link-color: hsl(hue($bg-whity), 80%, 59%);
 
-$shadow-color: hsla(hue($text-color), 50%, 30%, 0.25);
+$shadow-color: hsla(hue($text-color), 50%, 30%, 0.3);
 
 $social-colors: (
   twitter: #56a0ee,

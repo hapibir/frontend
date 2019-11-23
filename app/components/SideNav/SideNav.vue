@@ -22,5 +22,6 @@ export default createComponent({
   height: 100vh;
   background-color: $bg-whity;
   box-shadow: 0 0 48px $shadow-color;
+  overflow: hidden;
 }
 </style>

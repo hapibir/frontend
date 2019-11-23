@@ -34,15 +34,24 @@ export const signinProcesses: {
   async twitter(result, context) {
     const email = result.user!.email!
     const {
-      data: { user }
+      data: {
+        user: {
+          screenName,
+          name,
+          icon,
+          birthday: { formatted }
+        }
+      }
     } = await context.root.$apolloProvider.clients.defaultClient.query({
       query: gql`
         query($email: String!) {
           user(email: $email) {
             screenName
             name
-            email
             icon
+            birthday {
+              formatted
+            }
           }
         }
       `,
@@ -53,7 +62,10 @@ export const signinProcesses: {
 
     context.root.$accessor.login({
       email,
-      ...user
+      screenName,
+      name,
+      icon,
+      birthday: formatted
     })
     context.root.$router.push('/home')
 

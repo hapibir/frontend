@@ -9,16 +9,51 @@
     <div class="name-wrap">
       <p class="name">{{ account.name }}</p>
     </div>
+    <div class="details-list-wrap">
+      <ul class="details-list">
+        <li class="detail birthday">
+          <div class="detail-icon-wrap">
+            <font-awesome-icon :icon="icons.faBirthdayCake" fixed-width />
+          </div>
+          <div class="detail-text-wrap">
+            <p>{{ birthday }}</p>
+          </div>
+        </li>
+        <li class="detail remain">
+          <div class="detail-icon-wrap">
+            <font-awesome-icon :icon="icons.faCalendarStar" fixed-width />
+          </div>
+          <div class="detail-text-wrap">
+            <p>{{ remind }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { createComponent, ref } from '@vue/composition-api'
+import { createComponent, ref, computed } from '@vue/composition-api'
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import {
+  faBirthdayCake,
+  faCalendarStar
+} from '@fortawesome/pro-solid-svg-icons'
+
+import { format } from 'date-fns'
 
 export default createComponent({
-  components: {},
+  components: { FontAwesomeIcon },
   setup(_props, context) {
-    return { account: ref(context.root.$accessor.account) }
+    const account = ref(context.root.$accessor.account)
+    return {
+      account,
+      icons: { faBirthdayCake, faCalendarStar },
+      birthday: computed(() =>
+        format(new Date(account.value.birthday), 'yyyy/MM/dd')
+      )
+    }
   }
 })
 </script>
@@ -26,16 +61,18 @@ export default createComponent({
 <style lang="scss" scoped>
 .user-info-box {
   width: 100%;
-  height: 160px;
-  padding: 24px 16px;
+  height: 180px;
+  padding: 16px 16px;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto 2fr;
   grid-template-areas:
-    'icon screen-name'
-    'icon name'
-    '.... .';
-  grid-column-gap: 8px;
+    'icon    screen-name'
+    'icon    name'
+    'details details';
+  grid-column-gap: 12px;
+  background-color: #24292e;
+  box-shadow: 0 4px 16px $shadow-color;
 }
 
 .icon-wrap {
@@ -71,7 +108,43 @@ export default createComponent({
 }
 
 .name {
-  color: $text-color;
+  color: $text-color-whity;
   font-family: var(--sans-serif-jp);
+}
+
+.details-list-wrap {
+  grid-area: details;
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  align-self: center;
+}
+
+.detail {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  &:not(:last-of-type) {
+    margin-bottom: 6px;
+  }
+}
+
+.detail-icon-wrap {
+  color: $accent-color;
+  size: 20px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.detail-text-wrap {
+  p {
+    font-size: 0.95rem;
+    line-height: 1em;
+    font-family: var(--sans-serif-ja);
+    color: $text-color-whity;
+  }
 }
 </style>

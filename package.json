@@ -13,6 +13,7 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "@vue/composition-api": "^0.3.2",
     "cookie": "^0.4.0",
+    "date-fns": "^2.8.1",
     "dotenv": "^8.2.0",
     "firebase": "^7.4.0",
     "graphql-tag": "^2.10.1",
