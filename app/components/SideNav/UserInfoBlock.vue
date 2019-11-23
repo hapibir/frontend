@@ -9,6 +9,19 @@
     <div class="name-wrap">
       <p class="name">{{ account.name }}</p>
     </div>
+    <div class="socials-list-wrap">
+      <ul class="socials-list">
+        <li v-if="account.twitter" class="social twitter">
+          <div class="social-icon-wrap">
+            <font-awesome-icon :icon="icons.faTwitter" />
+          </div>
+          <a
+            target="_blank"
+            :href="`https://twitter.com/${account.twitter.screenName}`"
+          ></a>
+        </li>
+      </ul>
+    </div>
     <div class="details-list-wrap">
       <ul class="details-list">
         <li class="detail birthday">
@@ -40,6 +53,7 @@ import {
   faBirthdayCake,
   faCalendarStar
 } from '@fortawesome/pro-solid-svg-icons'
+import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 import { format } from 'date-fns'
 
@@ -49,7 +63,7 @@ export default createComponent({
     const account = ref(context.root.$accessor.account)
     return {
       account,
-      icons: { faBirthdayCake, faCalendarStar },
+      icons: { faBirthdayCake, faCalendarStar, faTwitter },
       birthday: computed(() =>
         format(new Date(account.value.birthday), 'yyyy/MM/dd')
       )
@@ -64,12 +78,12 @@ export default createComponent({
   height: 180px;
   padding: 16px 16px;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
   grid-template-rows: auto auto 2fr;
   grid-template-areas:
-    'icon    screen-name'
-    'icon    name'
-    'details details';
+    'icon    screen-name socials'
+    'icon    name        name'
+    'details details     details';
   grid-column-gap: 12px;
   background-color: #24292e;
   box-shadow: 0 4px 16px $shadow-color;
@@ -88,6 +102,44 @@ export default createComponent({
 
 .icon {
   size: 100%;
+}
+
+.socials-list-wrap {
+  grid-area: socials;
+  align-self: center;
+}
+
+.socials-list {
+  display: flex;
+  align-items: center;
+}
+
+.social {
+  color: white;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  @each $name, $color in (twitter: map-get($social-colors, 'twitter')) {
+    &.#{$name} {
+      background-color: $color;
+    }
+  }
+  &:not(:last-of-type) {
+    margin-right: 4px;
+  }
+  a {
+    position: absolute 0;
+    size: 100%;
+    z-index: 9999;
+  }
+}
+
+.social-icon-wrap {
+  size: 24px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .screen-name-wrap {

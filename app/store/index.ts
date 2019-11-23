@@ -8,6 +8,7 @@ type State = {
     name?: string
     icon: string
     birthday: string
+    twitter?: { id: string; screenName: string }
   }
 }
 export const state: () => State = () => ({
@@ -33,6 +34,7 @@ export const mutations = mutationTree(state, {
       name?: string
       icon: string
       birthday: string
+      twitter?: { id: string; screenName: string }
     }
   ) {
     state.isLogin = true

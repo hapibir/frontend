@@ -39,7 +39,9 @@ export const signinProcesses: {
           screenName,
           name,
           icon,
-          birthday: { formatted }
+          birthday: { formatted },
+          twitterId,
+          twitterScreenName
         }
       }
     } = await context.root.$apolloProvider.clients.defaultClient.query({
@@ -52,6 +54,8 @@ export const signinProcesses: {
             birthday {
               formatted
             }
+            twitterId
+            twitterScreenName
           }
         }
       `,
@@ -65,7 +69,11 @@ export const signinProcesses: {
       screenName,
       name,
       icon,
-      birthday: formatted
+      birthday: formatted,
+      twitter:
+        twitterId && twitterScreenName
+          ? { id: twitterId, screenName: twitterScreenName }
+          : undefined
     })
     context.root.$router.push('/home')
 
