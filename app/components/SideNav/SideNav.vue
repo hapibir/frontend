@@ -1,18 +1,21 @@
 <template>
   <nav class="side-nav">
-    <UserInfoBlock />
+    <UserInfoBlock v-if="isLogin" />
+    <div v-else></div>
     <p>A</p>
   </nav>
 </template>
 
 <script lang="ts">
-import { createComponent } from '@vue/composition-api'
+import { createComponent, ref } from '@vue/composition-api'
 
 import UserInfoBlock from './UserInfoBlock.vue'
 
 export default createComponent({
   components: { UserInfoBlock },
-  setup() {}
+  setup(_props, context) {
+    return { isLogin: ref(context.root.$accessor.isLogin) }
+  }
 })
 </script>
 

@@ -47,7 +47,7 @@ export const signinProcesses: {
     } = await context.root.$apolloProvider.clients.defaultClient.query({
       query: gql`
         query($email: String!) {
-          user(email: $email) {
+          user(where: { email: $email }) {
             screenName
             name
             icon

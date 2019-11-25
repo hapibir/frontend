@@ -4,7 +4,9 @@
       <img class="icon" :src="account.icon" />
     </div>
     <div class="screen-name-wrap">
-      <p class="screen-name">@{{ account.screenName }}</p>
+      <n-link :to="`/users/${account.screenName}`">
+        <p class="screen-name">@{{ account.screenName }}</p>
+      </n-link>
     </div>
     <div class="name-wrap">
       <p class="name">{{ account.name }}</p>

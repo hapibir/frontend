@@ -15,6 +15,6 @@ declare module 'vue/types/vue' {
 declare module '@nuxt/types' {
   interface NuxtAppOptions {
     $accessor: typeof accessorType
-    $apolloProvider: ApolloProvider
+    apolloProvider: ApolloProvider
   }
 }

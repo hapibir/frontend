@@ -38,7 +38,8 @@ export default createComponent({
 
 .nuxt {
   flex-grow: 2;
-  height: 100vh;
+  min-height: 100vh;
+  padding-top: 80px;
   overflow-y: scroll;
 }
 </style>
