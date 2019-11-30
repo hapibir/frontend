@@ -23,8 +23,6 @@ export const providers = {
   twitter: firebase.auth.TwitterAuthProvider
 }
 
-type a = keyof typeof providers
-
 export const signinProcesses: {
   [type in keyof typeof providers]: (
     result: firebase.auth.UserCredential,
@@ -36,6 +34,7 @@ export const signinProcesses: {
     const {
       data: {
         user: {
+          id,
           screenName,
           name,
           icon,
@@ -48,6 +47,7 @@ export const signinProcesses: {
       query: gql`
         query($email: String!) {
           user(where: { email: $email }) {
+            id
             screenName
             name
             icon
@@ -65,6 +65,7 @@ export const signinProcesses: {
     })
 
     context.root.$accessor.login({
+      id,
       email,
       screenName,
       name,

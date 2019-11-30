@@ -3,6 +3,7 @@ import { getAccessorType, mutationTree, getterTree } from 'nuxt-typed-vuex'
 type State = {
   isLogin: boolean
   account: {
+    id: string
     email: string
     screenName: string
     name?: string
@@ -15,6 +16,7 @@ export const state: () => State = () => ({
   isLogin: false,
   isRegister: false,
   account: {
+    id: '',
     email: '',
     screenName: '',
     name: '',
@@ -29,6 +31,7 @@ export const mutations = mutationTree(state, {
   login(
     state,
     account: {
+      id: string
       email: string
       screenName: string
       name?: string
