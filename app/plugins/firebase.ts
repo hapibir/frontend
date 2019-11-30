@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/storage'
 import { SetupContext } from '@vue/composition-api'
 import gql from 'graphql-tag'
 
