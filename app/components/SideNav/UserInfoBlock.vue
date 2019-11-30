@@ -34,14 +34,6 @@
             <p>{{ birthday }}</p>
           </div>
         </li>
-        <li class="detail remain">
-          <div class="detail-icon-wrap">
-            <font-awesome-icon :icon="icons.faCalendarStar" fixed-width />
-          </div>
-          <div class="detail-text-wrap">
-            <p>{{ remind }}</p>
-          </div>
-        </li>
       </ul>
     </div>
   </div>
