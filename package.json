@@ -9,7 +9,7 @@
     "@fortawesome/pro-solid-svg-icons": "^5.11.2",
     "@fortawesome/vue-fontawesome": "^0.1.7",
     "@kazupon/vue-i18n-loader": "^0.4.1",
-    "@nuxt/typescript-runtime": "^0.2.4",
+    "@nuxt/typescript-runtime": "^0.3.0",
     "@nuxtjs/apollo": "^4.0.0-rc17",
     "@nuxtjs/style-resources": "^1.0.0",
     "@vue/composition-api": "^0.3.2",
